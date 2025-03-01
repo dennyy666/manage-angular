@@ -13,6 +13,10 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
   }
 
+  baidu(){
+    window.open("https://www.baidu.com","_blank")
+  }
+
   jumpNotFound(){
     this.router.navigateByUrl('/pages/homeManage/notFound');
   }
