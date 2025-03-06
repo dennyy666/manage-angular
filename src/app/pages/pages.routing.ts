@@ -12,9 +12,17 @@ const routes: Routes = [
         data: {
           breadcrumb: '首页配置'
         }
-      }
+      },
+      {
+        path: "exampleManage",
+        loadChildren: () => import("./example-manage/example-manage.module").then(m => m.ExampleManageModule),
+        data: {
+          breadcrumb: '示例页栏目'
+        }
+      },
     ]
   },
+
 ];
 
 export const PagesRoutes = RouterModule.forChild(routes);
