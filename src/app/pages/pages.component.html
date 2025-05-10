@@ -1,0 +1,53 @@
+<div class="pags-contain">
+  <aside>
+    <div class="head">
+      <img src="assets/mlogo.png" alt="">
+      <span>Angular admin</span>
+    </div>
+    <div class="line"></div>
+    <ul nz-menu nzMode="inline" nzTheme="dark">
+      <li nz-submenu nzTitle="首页配置" nzIcon="home">
+        <ul>
+          <li nz-menu-item>英雄管理</li>
+          <li nz-menu-item>百度一下啦</li>
+          <li nz-menu-item>404 页面</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="示例页栏目" nzIcon="product">
+        <ul>
+          <li nz-menu-item>表单验证</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="file-jpg"></span>
+        <span>svg-图标</span>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="github"></span>
+        <span>项目地址</span>
+      </li>
+    </ul>
+  </aside>
+  <div class="content-box">
+    <header>
+      <div class="left">
+        <nz-breadcrumb [nzAutoGenerate]="true">
+
+        </nz-breadcrumb>
+      </div>
+      <div class="right">
+        <img src="assets/avatar.image" alt="">
+        <span class="manage">超级管理员</span>
+        <span class="loginout" nz-icon nzType="logout" nzTheme="outline"></span>
+        <span class="loginout-text">退出登录</span>
+      </div>
+    </header>
+    <main>
+      <div class="card">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+
+</div>
+
