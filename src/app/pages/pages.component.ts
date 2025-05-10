@@ -12,4 +12,8 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
   }
 
+  baidu(){
+    window.open("https://www.baidu.com","_blank")
+  }
+
 }
