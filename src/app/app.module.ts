@@ -11,12 +11,14 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { AntduiModule } from './antdui/antdui.module';
+import { LoginComponent } from './login/login.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
+    LoginComponent
    ],
   imports: [
     BrowserModule,
