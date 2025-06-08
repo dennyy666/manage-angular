@@ -37,9 +37,9 @@
         </nz-breadcrumb>
       </div>
       <div class="right">
-        <a nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight">
+        <a nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight" *ngIf="authService.currentUser$ | async as user">
           <img src="assets/avatar.png">
-          <span>酒剑仙</span>
+          <span>{{user.username}}</span>
           <span nz-icon nzType="down" class="menu-down-icon"></span>
         </a>
       </div>
@@ -53,10 +53,9 @@
 
 </div>
 
-
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu nzSelectable>
     <li nz-menu-item>github地址</li>
-    <li nz-menu-item>退出登录</li>
+    <li nz-menu-item (click)="loginOut()">退出登录</li>
   </ul>
 </nz-dropdown-menu>

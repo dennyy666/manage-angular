@@ -1,5 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pages',
@@ -23,8 +27,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
   isCollapsed: boolean = false
-  
-  constructor() { }
+
+  constructor(
+    private router: Router,
+    private message: NzMessageService,
+    private modal: NzModalService,
+    public authService: AuthService,
+  ) { }
 
   ngOnInit() {
 
@@ -33,5 +42,23 @@ export class PagesComponent implements OnInit {
   toggle() {
     this.isCollapsed = !this.isCollapsed;
   }
+
+  loginOut() {
+    this.modal.confirm({
+      nzTitle: `您确定要退出Angular admin`,
+      nzOkText: '是',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => {
+        this.authService.logout();
+        this.router.navigateByUrl('login');
+        this.message.success('退出登录成功');
+      },
+      nzCancelText: '否',
+      nzOnCancel: () => {
+      }
+    });
+  }
+
 
 }
