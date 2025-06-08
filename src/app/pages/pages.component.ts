@@ -47,6 +47,10 @@ export class PagesComponent implements OnInit {
     window.open("https://www.baidu.com", "_blank")
   }  
 
+  openGithub() {
+    window.open("https://github.com/dennyy666/manage-angular", "_blank")
+  }  
+
   loginOut() {
     this.modal.confirm({
       nzTitle: `您确定要退出Angular admin`,
