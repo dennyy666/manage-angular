@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pages',
@@ -27,16 +27,27 @@ import { Router } from '@angular/router';
 })
 export class PagesComponent implements OnInit {
   isCollapsed: boolean = false
-
+  activeUrl: string = ''
+  
   constructor(
     private router: Router,
     private message: NzMessageService,
     private modal: NzModalService,
     public authService: AuthService,
-  ) { }
+  ) { 
+    this.listenRouter()
+  }
 
   ngOnInit() {
 
+  }
+
+  listenRouter() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.activeUrl = event.url;
+      }
+    });
   }
 
   toggle() {
