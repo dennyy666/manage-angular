@@ -11,7 +11,7 @@ export class HomeManageService {
 
   // 获取列表
   getUserList(): Observable<any> {
-    return this.http.post('assets/hero-manage/hero.json',{});
+    return this.http.get('assets/hero-manage/hero.json');
   }
 
 }

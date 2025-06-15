@@ -11,7 +11,7 @@ export class LoginService {
 
   // 登录
   login(username: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>('assets/user-login/login.json', { username, password });
+    return this.http.get<LoginResponse>('assets/user-login/login.json');
   }
 
 }
