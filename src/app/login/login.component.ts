@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       const user = data.find((item) => item.username === account)
       if (user) {
         this.authService.setAuthentication(user)
-        this.router.navigateByUrl('pages');
+        this.router.navigateByUrl('pages/homeManage/heroManage');
       } else {
         this.message.warning('用户名或者密码错误');
       }
