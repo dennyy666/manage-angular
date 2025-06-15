@@ -25,6 +25,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+
 @NgModule({
   imports: [
     CommonModule
@@ -55,6 +57,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzSpinModule,
     NzDividerModule,
     NzSelectModule,
+    NzPopoverModule,
   ],
   declarations: []
 })
