@@ -4,13 +4,13 @@
       <tr>
         <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" nzLabel="Select all"
           (nzCheckedChange)="onAllChecked($event)"></th>
-        <th>姓名</th>
-        <th>手机号</th>
-        <th>角色</th>
-        <th>位置</th>
-        <th>备注</th>
-        <th>添加时间</th>
-        <th nzRight>操作</th>
+        <th nzAlign="center">姓名</th>
+        <th nzAlign="center">手机号</th>
+        <th nzAlign="center">角色</th>
+        <th nzAlign="center">位置</th>
+        <th nzAlign="center">备注</th>
+        <th nzAlign="center">添加时间</th>
+        <th nzAlign="center">操作</th>
       </tr>
     </thead>
     <tbody>
@@ -18,13 +18,13 @@
       <tr>
         <td [nzChecked]="setOfCheckedId.has(data.id)" [nzLabel]="data.name"
           (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
-        <td>{{data?.name ||'-'}}</td>
-        <td>{{data?.mobile ||'-'}}</td>
-        <td>{{data?.roleName ||'-'}}</td>
-        <td>{{data?.positionName ||'-'}}</td>
-        <td>{{data?.remark ||'-'}}</td>
-        <td>{{data?.createTime ||'-'}}</td>
-        <td>
+        <td nzAlign="center">{{data?.name ||'-'}}</td>
+        <td nzAlign="center">{{data?.mobile ||'-'}}</td>
+        <td nzAlign="center">{{data?.roleName ||'-'}}</td>
+        <td nzAlign="center">{{data?.positionName ||'-'}}</td>
+        <td nzAlign="center">{{data?.remark ||'-'}}</td>
+        <td nzAlign="center">{{data?.createTime ||'-'}}</td>
+        <td nzAlign="center">
           <a nz-button nzType="link" (click)="updateHero(data)">修改</a>
           <nz-divider nzType="vertical"></nz-divider>
           <a nz-button nzType="link" (click)="deleteHero(data?.id,data?.name)" nzDanger>删除</a>
