@@ -1,0 +1,95 @@
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #2253dc;
+    background-image: linear-gradient(45deg, #2253dc, #4fb8f9 99%);
+    position: relative;
+    z-index: 1;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/admin-login-bg.jpg);
+        background-size: cover;
+        background-position: center center;
+        z-index: 2;
+    }
+
+    .content {
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        margin-top: -302px;
+        right: 10%;
+        width: 100%;
+        max-width: 480px;
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 24px;
+            text-shadow: 4px 4px 4px #333;
+            font-family: 宋体;
+
+            span {
+                line-height: 1;
+            }
+        }
+
+        .form-box {
+            background-color: #81c7fa;
+            border: solid 2px #3b9be5;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 40px;
+
+            .login-form {
+                background-color: #fff;
+                padding: 40px 40px 30px;
+
+                .login-title {
+                    font-size: 22px;
+                    line-height: 22px;
+                    color: #1890ff;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+
+                .tips {
+                    font-size: 14px;
+                    color: #555;
+                    margin-bottom: 8px;
+
+                    .green {
+                        background-color: #4caf50;
+                        border-color: #4caf50;
+                    }
+                }
+
+                .f-vertical {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+            }
+        }
+
+        .bottom-text {
+            width: 100%;
+            max-width: 500px;
+            font-size: 14px;
+            color: #fffc;
+            font-weight: 400;
+            line-height: 22px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+
+}
