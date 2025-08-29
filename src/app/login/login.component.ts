@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { LoginService } from './login.service';
+import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +13,10 @@ export class LoginComponent implements OnInit {
   validateForm: FormGroup;
   constructor(
     private fb: NonNullableFormBuilder,
+    private router: Router,
     private message: NzMessageService,
+    private service: LoginService,
+    private authService: AuthService,
   ) {
     this.validateForm = this.fb.group({
       account: ['', [Validators.required]],
@@ -31,10 +36,22 @@ export class LoginComponent implements OnInit {
     if (this.validateForm.invalid) {
       return
     }
+    const { account, password } = this.validateForm.value;
+    this.performLogin(account, password);    
   }
 
-
-
+  performLogin(account: string, password: string = '123456') {
+    this.service.login(account, password).subscribe(res => {
+      const { data } = res
+      const user = data.find((item) => item.username === account)
+      if (user) {
+        this.authService.setAuthentication(user)
+        this.router.navigateByUrl('/pages');
+      } else {
+        this.message.warning('用户名或者密码错误');
+      }
+    });
+  }
 
   copy(account: string) {
     navigator.clipboard.writeText(account).then(
