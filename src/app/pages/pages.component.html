@@ -1,0 +1,61 @@
+<div class="pags-contain">
+  <aside [@slide]="isCollapsed ? 'collapsed' : 'expanded'">
+    <div class="head">
+      <img src="assets/mlogo.png">
+      <span>Angular admin</span>
+    </div>
+    <div class="line"></div>
+    <ul nz-menu nzMode="inline" nzTheme="dark">
+      <li nz-submenu nzTitle="首页配置" nzIcon="home">
+        <ul>
+          <li nz-menu-item>英雄管理</li>
+          <li nz-menu-item>百度一下啦</li>
+          <li nz-menu-item>404 页面</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="示例页栏目" nzIcon="product">
+        <ul>
+          <li nz-menu-item>表单验证</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="file-jpg"></span>
+        <span>svg-图标</span>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="github"></span>
+        <span>项目地址</span>
+      </li>
+    </ul>
+  </aside>
+  <div class="content-box">
+    <header>
+      <div class="left">
+        <span class="fold" [nzType]="isCollapsed ?'menu-unfold':'menu-fold'" nz-icon nzTheme="outline"
+          (click)="toggle()"></span>
+        <nz-breadcrumb [nzAutoGenerate]="true">
+        </nz-breadcrumb>
+      </div>
+      <div class="right">
+        <a nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight">
+          <img src="assets/avatar.png">
+          <span>酒剑仙</span>
+          <span nz-icon nzType="down" class="menu-down-icon"></span>
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="card">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item>github地址</li>
+    <li nz-menu-item>退出登录</li>
+  </ul>
+</nz-dropdown-menu>
