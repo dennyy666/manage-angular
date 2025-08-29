@@ -43,6 +43,10 @@ export class PagesComponent implements OnInit {
 
   baidu() {
     window.open("https://www.baidu.com", "_blank")
+  }
+  
+  openGithub() {
+    window.open("https://github.com/dennyy666/manage-angular", "_blank")
   }  
 
   loginOut() {
