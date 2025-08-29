@@ -49,6 +49,10 @@ export class PagesComponent implements OnInit {
     window.open("https://github.com/dennyy666/manage-angular", "_blank")
   }  
 
+  jumpNotFound() {
+    this.router.navigateByUrl('/pages/homeManage/notFound');
+  }
+
   loginOut() {
     this.modal.confirm({
       nzTitle: `您确定要退出Angular admin`,

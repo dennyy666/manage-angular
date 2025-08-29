@@ -12,13 +12,15 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient } from '@angular/common/http';
 import { AntduiModule } from './antdui/antdui.module';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './PageNotFound/PageNotFound.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent,
    ],
   imports: [
     BrowserModule,
