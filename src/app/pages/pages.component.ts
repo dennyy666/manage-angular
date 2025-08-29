@@ -41,6 +41,10 @@ export class PagesComponent implements OnInit {
     this.isCollapsed = !this.isCollapsed;
   }
 
+  baidu() {
+    window.open("https://www.baidu.com", "_blank")
+  }  
+
   loginOut() {
     this.modal.confirm({
       nzTitle: `您确定要退出Angular admin`,
