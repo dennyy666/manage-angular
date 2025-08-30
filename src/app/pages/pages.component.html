@@ -6,9 +6,9 @@
     </div>
     <div class="line"></div>
     <ul nz-menu nzMode="inline" nzTheme="dark">
-      <li nz-submenu nzTitle="首页配置" nzIcon="home">
+      <li nz-submenu nzTitle="首页配置" nzIcon="home" [nzOpen]="activeUrl.indexOf('/pages/homeManage')!=-1">
         <ul>
-          <li nz-menu-item [routerLink]="['/pages/homeManage/heroManage']">英雄管理</li>
+          <li nz-menu-item [routerLink]="['/pages/homeManage/heroManage']" [nzSelected]="activeUrl.indexOf('/pages/homeManage')!=-1">英雄管理</li>
           <li nz-menu-item (click)="baidu()">百度一下啦</li>
           <li nz-menu-item (click)="jumpNotFound()">404 页面</li>
         </ul>

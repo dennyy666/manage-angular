@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from '../auth/auth.service';
@@ -27,14 +27,26 @@ import { AuthService } from '../auth/auth.service';
 })
 export class PagesComponent implements OnInit {
   isCollapsed: boolean = false
+  activeUrl: string = ''
   constructor(
     private router: Router,
     private message: NzMessageService,
     private modal: NzModalService,
     public authService: AuthService,
-  ) { }
+  ) {
+    this.listenRouter()
+  }
 
   ngOnInit() {
+
+  }
+
+  listenRouter() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.activeUrl = event.url;
+      }
+    });
   }
 
   toggle() {
@@ -44,10 +56,10 @@ export class PagesComponent implements OnInit {
   baidu() {
     window.open("https://www.baidu.com", "_blank")
   }
-  
+
   openGithub() {
     window.open("https://github.com/dennyy666/manage-angular", "_blank")
-  }  
+  }
 
   jumpNotFound() {
     this.router.navigateByUrl('/pages/homeManage/notFound');
