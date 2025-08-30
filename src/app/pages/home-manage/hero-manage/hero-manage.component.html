@@ -1,0 +1,115 @@
+<nz-card [nzTitle]="extraTemplate">
+  <nz-table #basicTable [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+    <thead>
+      <tr>
+        <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" nzLabel="Select all"
+          (nzCheckedChange)="onAllChecked($event)"></th>
+        <th nzAlign="center">姓名</th>
+        <th nzAlign="center">手机号</th>
+        <th nzAlign="center">角色</th>
+        <th nzAlign="center">位置</th>
+        <th nzAlign="center">备注</th>
+        <th nzAlign="center">添加时间</th>
+        <th nzAlign="center">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of basicTable.data; track data) {
+      <tr>
+        <td [nzChecked]="setOfCheckedId.has(data.id)" [nzLabel]="data.name"
+          (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+        <td nzAlign="center">{{data?.name ||'-'}}</td>
+        <td nzAlign="center">{{data?.mobile ||'-'}}</td>
+        <td nzAlign="center">{{data?.roleName ||'-'}}</td>
+        <td nzAlign="center">{{data?.positionName ||'-'}}</td>
+        <td nzAlign="center">{{data?.remark ||'-'}}</td>
+        <td nzAlign="center">{{data?.createTime ||'-'}}</td>
+        <td nzAlign="center">
+          <a nz-button nzType="link" (click)="updateHero(data)">修改</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-button nzType="link" (click)="deleteHero(data?.id,data?.name)" nzDanger>删除</a>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <button nz-button nzType="primary" style="margin-right:15px;" (click)="addHero()"><span nz-icon nzType="plus"
+      nzTheme="outline"></span>增加</button>
+  <button nz-button nzType="primary" nzDanger (click)="batchDelete()"><span nz-icon nzType="delete"
+      nzTheme="outline"></span>批量删除</button>
+</ng-template>
+
+<nz-modal [(nzVisible)]="addHeroModal" nzTitle="添加英雄" (nzOnCancel)="addHeroCancel()" (nzOnOk)="addHeroOk()">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="addHeroOk()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>姓名</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="accountErrorTpl">
+          <input nz-input formControlName="name" placeholder="请输入姓名" maxlength="8" />
+          <ng-template #accountErrorTpl let-control>
+            @if (control.errors?.['required']) {
+            请输入账号
+            }
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>手机号</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="mobileErrorTpl">
+          <input nz-input formControlName="mobile" placeholder="请输入手机号" maxlength="11" />
+          <ng-template #mobileErrorTpl let-control>
+            @if (control.errors?.['required']) {
+            请输入手机号
+            }
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>角色</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="roleErrorTpl">
+          <nz-select formControlName="role" nzAllowClear nzPlaceHolder="请选择角色">
+            <nz-option nzValue="1" nzLabel="剑士"></nz-option>
+            <nz-option nzValue="2" nzLabel="射手"></nz-option>
+            <nz-option nzValue="3" nzLabel="坦克"></nz-option>
+            <nz-option nzValue="4" nzLabel="法师"></nz-option>
+          </nz-select>
+          <ng-template #roleErrorTpl let-control>
+            @if (control.errors?.['required']) {
+            请选择角色
+            }
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>位置</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="positionErrorTpl">
+          <nz-select formControlName="position" nzAllowClear nzPlaceHolder="请选择位置">
+            <nz-option nzValue="1" nzLabel="上单"></nz-option>
+            <nz-option nzValue="2" nzLabel="中单"></nz-option>
+            <nz-option nzValue="3" nzLabel="打野"></nz-option>
+            <nz-option nzValue="4" nzLabel="ADC"></nz-option>
+            <nz-option nzValue="5" nzLabel="辅助"></nz-option>
+          </nz-select>
+          <ng-template #positionErrorTpl let-control>
+            @if (control.errors?.['required']) {
+            请选择位置
+            }
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>备注</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="remarkErrorTpl">
+          <textarea rows="4" formControlName="remark" nz-input maxlength="20"></textarea>
+          <ng-template #remarkErrorTpl let-control>
+            @if (control.errors?.['required']) {
+            请输入备注
+            }
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>
