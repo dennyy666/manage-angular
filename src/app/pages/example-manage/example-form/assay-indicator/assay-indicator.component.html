@@ -1,0 +1,14 @@
+<div class="configuration-item">
+  <label>站台化验结果配置:</label>
+  <div class="indicators-box">
+    <nz-checkbox-group [(ngModel)]="stationQualityItemList" (ngModelChange)="stationQualityChecked()"></nz-checkbox-group>
+  </div>
+</div>
+<div class="configuration-item">
+  <label>配煤比例指标配置:</label>
+  <div class="indicators-box">
+    <nz-checkbox-group [(ngModel)]="colalQualityItemList" [nzDisabled]="nzDisabled"
+      (ngModelChange)="colalQualityChecked()">
+    </nz-checkbox-group>
+  </div>
+</div>

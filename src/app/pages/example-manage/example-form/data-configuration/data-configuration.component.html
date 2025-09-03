@@ -1,0 +1,45 @@
+<div nz-row class="search-box">
+  <form nz-form [formGroup]="validateForm">
+    <div nz-row nzType="flex" nzJustify="start">
+      <nz-form-item nzFlex>
+        <nz-form-label>数据配置</nz-form-label>
+        <nz-form-control>
+          <nz-select nzPlaceHolder="请选择数据配置" nzShowSearch nzAllowClear formControlName="sourceType" (ngModelChange)='sourceTypeChange($event)'>
+            <nz-option [nzValue]="1" nzLabel="按汽运配置"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="按信息部配置"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="按汽运+信息部配置"></nz-option>
+          </nz-select>
+          <ng-container *ngIf="validateForm.get('sourceType')?.dirty && validateForm.get('sourceType')?.errors">
+            <span class="error-style" *ngIf="validateForm.get('sourceType')?.hasError('required')">请选择数据配置</span>
+          </ng-container>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nzFlex *ngIf="validateForm.value.sourceType == 1 || validateForm.value.sourceType == 3">
+        <nz-form-label>汽运账号</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入汽运账号" formControlName="vipMobile" maxlength="11" nz-popover nzPopoverTitle="输入提示" nzPopoverContent="12222222222 13333333333" nzPopoverPlacement="right" nzPopoverTrigger="focus"/>
+          <ng-container *ngIf="validateForm.get('vipMobile')?.dirty && validateForm.get('vipMobile')?.errors">
+            <span class="error-style" *ngIf="validateForm.get('vipMobile')?.hasError('required')">请输入汽运账号</span>
+            <span class="error-style" *ngIf="validateForm.get('vipMobile')?.hasError('notExist')">账号不存在</span>
+            <span class="error-style" *ngIf="validateForm.get('vipMobile')?.hasError('pattern')">手机号不正确</span>
+          </ng-container>
+          <span class="error-style"
+            *ngIf="validateForm.value.vipName&&validateForm.get('vipMobile')?.valid">{{validateForm.value.vipName}}</span>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nzFlex *ngIf="validateForm.value.sourceType == 2 || validateForm.value.sourceType == 3">
+        <nz-form-label>信息部账号</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入信息部账号" formControlName="ownerMobile" maxlength="11" nz-popover nzPopoverTitle="输入提示" nzPopoverContent="15555555555 16666666666" nzPopoverPlacement="right" nzPopoverTrigger="focus"/>
+          <ng-container *ngIf="validateForm.get('ownerMobile')?.dirty && validateForm.get('ownerMobile')?.errors">
+            <span class="error-style" *ngIf="validateForm.get('ownerMobile')?.hasError('required')">请输入信息部账号</span>
+            <span class="error-style" *ngIf="validateForm.get('ownerMobile')?.hasError('notExist')">账号不存在</span>
+            <span class="error-style" *ngIf="validateForm.get('ownerMobile')?.hasError('pattern')">手机号不正确</span>
+          </ng-container>
+          <span class="error-style"
+            *ngIf="validateForm.value.ownerName&&validateForm.get('ownerMobile')?.valid">{{validateForm.value.ownerName}}</span>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </form>
+</div>

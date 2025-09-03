@@ -1,0 +1,72 @@
+<div class="station-coal-configuration">
+  <h2 [class.orange-color]="!outStationSetFlag" (click)="outStation()">出站配煤比例配置</h2>
+  <span class="instructions" *ngIf="!outStationSetFlag">*请先进行区间配置，配置后不可调整区间配置</span>
+  <span class="tips" *ngIf="outStationSetFlag" (click)="clear()">清除数据</span>
+  <form nz-form [formGroup]="outStationCoalForm" *ngIf="outStationSetFlag">
+    <div class="search-box" formArrayName="stationCoalStatisticsMathList">
+      <div *ngFor="let control of stationCoalStatisticsMathList.controls; let i = index" [formGroupName]="i"
+        style="display: flex;">
+        <div class="coal-configuration-left">
+          <nz-form-item nzFlex>
+            <nz-form-label>{{control.value.label}}匹配</nz-form-label>
+            <nz-form-control>
+              <nz-select nzShowSearch nzAllowClear formControlName="matchType"
+                (ngModelChange)='matchTypeChange($event,i)'>
+                <nz-option [nzValue]="''" nzLabel="请选择"></nz-option>
+                <nz-option [nzValue]="1" nzLabel="根据区间范围"></nz-option>
+                <nz-option [nzValue]="2" nzLabel="根据自定义文字"></nz-option>
+              </nz-select>
+              <ng-container *ngIf="control.get('matchType')?.dirty && control.get('matchType')?.errors">
+                <span class="error-style" *ngIf="control.get('matchType')?.hasError('required')">
+                  请选择{{control.value.label}}
+                </span>
+              </ng-container>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div formArrayName="matchRangList" class="section-container" class="coal-configuration-right"
+          *ngIf="control.value.matchType == 2">
+          <div *ngFor="let stage of getMatchRangListControls(control); let j = index" [formGroupName]="j" nz-row
+            nzType="flex" nzJustify="start">
+            <nz-form-item nzFlex>
+              <nz-form-label>定义区间</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="matchRangName" maxlength="10" />
+                <ng-container
+                  *ngIf="stage.get('matchRangName')?.dirty && stage.get('matchRangName')?.errors">
+                  <span class="error-style" *ngIf="stage.get('matchRangName')?.hasError('required')">
+                    请输入定义区间
+                  </span>
+                  <span class="error-style" *ngIf="stage.get('matchRangName')?.hasError('pattern')">
+                    仅支持数字+字母+汉字
+                  </span>
+                </ng-container>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nzFlex>
+              <nz-form-label>区间范围</nz-form-label>
+              <nz-form-control>
+                <nz-select nzPlaceHolder="请选择区间范围" nzShowSearch nzAllowClear formControlName="statisticsRangName">
+                  <nz-option *ngFor="let item of sectionNameList" [nzValue]="item" [nzLabel]="item"></nz-option>
+                </nz-select>
+                <ng-container
+                  *ngIf="stage.get('statisticsRangName')?.dirty && stage.get('statisticsRangName')?.errors">
+                  <span class="error-style" *ngIf="stage.get('statisticsRangName')?.hasError('required')">
+                    请选择区间范围
+                  </span>
+                </ng-container>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nzFlex>
+              <nz-form-control>
+                <a class="operate-section" (click)='addRange(i)'>增加</a>
+                <a class="operate-section" (click)='deleteRange(i,j)' *ngIf="j != 0">删除</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

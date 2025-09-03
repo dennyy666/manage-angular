@@ -1,0 +1,94 @@
+<div class="section-configuration">
+  <h2 [class.orange-color]="!sectionSetFlag" (click)="sectionSet()">区间配置</h2>
+  <form nz-form [formGroup]="stationQualityForm" *ngIf="sectionSetFlag">
+    <div class="search-box" formArrayName="stationCoalStatisticsRangList">
+      <div nz-row nzType="flex" nzJustify="start" [nzGutter]="24" style="margin-bottom: 20px;"
+        *ngFor="let control of stationCoalStatisticsRangList.controls; let i = index" [formGroupName]="i">
+        <nz-form-item nzFlex>
+          <nz-form-label>区间名称</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="statisticsRangName" maxlength="10" />
+            <ng-container
+              *ngIf="control.get('statisticsRangName')?.dirty && control.get('statisticsRangName')?.errors">
+              <span class="error-style" *ngIf="control.get('statisticsRangName')?.hasError('required')">
+                请输入区间名称
+              </span>
+              <span class="error-style" *ngIf="control.get('statisticsRangName')?.hasError('pattern')">
+                仅支持数字+字母+汉字
+              </span>
+            </ng-container>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nzFlex>
+          <nz-form-label>当前库存</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="inventory" [appInputNumber]="2" />
+            <ng-container *ngIf="control.get('inventory')?.dirty && control.get('inventory')?.errors">
+              <span class="error-style" *ngIf="control.get('inventory')?.hasError('required')">
+                请输入当前库存
+              </span>
+              <span class="error-style" *ngIf="control.get('inventory')?.hasError('min')">
+                库存范围：大于等于0小于10000000
+              </span>
+              <span class="error-style" *ngIf="control.get('inventory')?.hasError('max')">
+                库存范围：大于等于0小于10000000
+              </span>
+            </ng-container>
+          </nz-form-control>
+        </nz-form-item>
+        <div formArrayName="qualityRangList" class="section-container">
+          <div *ngFor="let stage of getQualityRangListControls(control); let j = index" [formGroupName]="j">
+            <nz-form-item nzFlex>
+              <nz-form-label>{{stage.value.standardProject}}区间</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="beginStandardValue" [appInputNumber]="2" />
+                <span class="line">~</span>
+                <ng-container
+                  *ngIf="stage.get('beginStandardValue')?.dirty && stage.get('beginStandardValue')?.errors">
+                  <span class="error-style" *ngIf="stage.get('beginStandardValue')?.hasError('required')">
+                    请输入开始区间
+                  </span>
+                  <span class="error-style" *ngIf="stage.get('beginStandardValue')?.hasError('min')">
+                    范围：{{stage.value.beginValue+'-'+stage.value.endValue}}
+                  </span>
+                  <span class="error-style" *ngIf="stage.get('beginStandardValue')?.hasError('max')">
+                    范围：{{stage.value.beginValue+'-'+stage.value.endValue}}
+                  </span>
+                  <span class="error-style" *ngIf="stage.get('beginStandardValue')?.hasError('errorNumber')">
+                    开始不能大于结束
+                  </span>
+                </ng-container>
+              </nz-form-control>
+              <nz-form-control>
+                <input nz-input formControlName="endStandardValue" [appInputNumber]="2" />
+                <ng-container
+                  *ngIf="stage.get('endStandardValue')?.dirty && stage.get('endStandardValue')?.errors">
+                  <span class="error-style" *ngIf="stage.get('endStandardValue')?.hasError('required')">
+                    请输入结束区间
+                  </span>
+                  <span class="error-style" *ngIf="stage.get('endStandardValue')?.hasError('min')">
+                    范围：{{stage.value.beginValue+'-'+stage.value.endValue}}
+                  </span>
+                  <span class="error-style" *ngIf="stage.get('endStandardValue')?.hasError('max')">
+                    范围：{{stage.value.beginValue+'-'+stage.value.endValue}}
+                  </span>
+                  <span class="error-style" *ngIf="stage.get('endStandardValue')?.hasError('errorNumber')">
+                    结束不能小于开始
+                  </span>
+                </ng-container>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <nz-form-item *ngIf="!outStationSetFlag">
+            <nz-form-control>
+              <a class="operate-section" (click)='addSection()'>新增区间</a>
+              <a class="operate-section" (click)='deleteSection(i)'>删除区间</a>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

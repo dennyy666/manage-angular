@@ -1,0 +1,30 @@
+<div class="form-wrapper">
+  <div class="basic-configuration">
+    <app-data-configuration #DataConfigurationComponent></app-data-configuration>
+    <app-assay-indicator 
+      [(stationQualityItemList)]="stationQualityItemList" 
+      [(colalQualityItemList)]="colalQualityItemList"
+      [nzDisabled]="sectionSetFlag"
+      (notice)="getDetails()">
+  </app-assay-indicator>
+  </div>
+
+  <app-section-configuration 
+    [colalQualityItemList]="colalQualityItemList" 
+    [outStationSetFlag]="outStationSetFlag"
+    [(sectionSetFlag)]="sectionSetFlag"
+    #SectionConfigurationComponent>
+  </app-section-configuration>
+
+  <app-out-station-set 
+    (outStationSet)="onOutStationSet()" 
+    (clearData)="onClearData()"
+    [(outStationSetFlag)]="outStationSetFlag" 
+    [sectionNameList]="sectionNameList" 
+    [colalQualityItemList]="colalQualityItemList"
+    #OutStationSetComponent>
+  </app-out-station-set>
+  <div class="submit-box">
+    <button nz-button nzType="primary" (click)="formVerify()" *ngIf="outStationSetFlag">提交表单</button>
+  </div>
+</div>
