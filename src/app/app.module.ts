@@ -10,7 +10,7 @@ import zh from '@angular/common/locales/zh';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzButtonModule } from 'ng-zorro-antd/button';
+import { ZorroModule } from './zorro/zorro.module';
 registerLocaleData(zh);
 
 @NgModule({
@@ -23,7 +23,7 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzButtonModule
+    ZorroModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }
