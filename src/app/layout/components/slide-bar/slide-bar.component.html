@@ -1,3 +1,27 @@
-<p>
-  slide-bar works!
-</p>
+<div class="head">
+  <img src="assets/mlogo.png">
+  <span>Angular admin</span>
+</div>
+<div class="line"></div>
+<ul nz-menu nzMode="inline" nzTheme="dark">
+  <li nz-submenu nzTitle="首页配置" nzIcon="home">
+    <ul>
+      <li nz-menu-item>英雄管理</li>
+      <li nz-menu-item (click)="baidu()">百度一下啦</li>
+      <li nz-menu-item (click)="jumpNotFound()">404 页面</li>
+    </ul>
+  </li>
+  <li nz-submenu nzTitle="示例页栏目" nzIcon="tablet">
+    <ul>
+      <li nz-menu-item>表单验证</li>
+    </ul>
+  </li>
+  <li nz-menu-item>
+    <span nz-icon nzType="file-jpg"></span>
+    <span>svg-图标</span>
+  </li>
+  <li nz-menu-item>
+    <span nz-icon nzType="github" (click)="openGithub()"></span>
+    <span>项目地址</span>
+  </li>
+</ul>
