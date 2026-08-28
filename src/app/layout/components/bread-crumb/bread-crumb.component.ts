@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-bread-crumb',
@@ -11,36 +12,38 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class BreadCrumbComponent implements OnInit {
 
   constructor(
-        private router: Router,
-        private modal: NzModalService,
-        private message: NzMessageService,
+    private router: Router,
+    private modal: NzModalService,
+    private message: NzMessageService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit() {
   }
 
   toggle() {
-    
-  }  
+
+  }
 
   openGithub() {
     window.open("https://github.com/dennyy666/manage-angular", "_blank")
   }
 
   loginOut() {
-    this.modal.confirm({ 
-      nzTitle: '您确定要退出Angular admin', 
+    this.modal.confirm({
+      nzTitle: '您确定要退出Angular admin',
       nzOkText: '是',
       nzOkType: 'primary',
       nzOkDanger: true,
       nzOnOk: () => {
+        this.authService.logout();
         this.router.navigateByUrl('login');
         this.message.success('退出登录成功');
       },
       nzCancelText: '否',
       nzOnCancel: () => {
 
-      }      
+      }
     })
   }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { LoginService } from './login.service';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +15,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: NonNullableFormBuilder,
     private message: NzMessageService,
+    private service: LoginService,
+    private authService: AuthService,
+    private router: Router,
   ) {
     this.validateForm = this.fb.group({
       account: ['', [Validators.required]],
@@ -32,11 +38,20 @@ export class LoginComponent implements OnInit {
       return
     }
     const { account, password } = this.validateForm.value;
-    this.performLogin(account, password);    
+    this.performLogin(account, password);
   }
 
   performLogin(account: string, password: string = '123456') {
-
+    this.service.login(account, password).subscribe(res => {
+      const { data } = res
+      const user = data.find((item) => item.username === account)
+      if (user) {
+        this.authService.setAuthentication(user)
+        this.router.navigateByUrl('/layout');
+      } else {
+        this.message.warning('用户名或者密码错误');
+      }
+    });
   }
 
   copy(account: string) {
