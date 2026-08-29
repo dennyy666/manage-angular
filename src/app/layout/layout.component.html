@@ -1,5 +1,5 @@
 <div class="admin-layout">
-  <aside class="sidebar">
+  <aside class="sidebar" [@slide]="(isCollapsed$ | async) ? 'collapsed' : 'expanded'">
     <app-slide-bar></app-slide-bar>
   </aside>
   <div class="main-area">

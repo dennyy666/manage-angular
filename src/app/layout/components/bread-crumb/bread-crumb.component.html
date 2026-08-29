@@ -1,6 +1,6 @@
 <header class="breadcrumb">
   <div class="left"> 
-    <span nz-icon nzTheme="outline" (click)="toggle()"></span>
+    <span nz-icon nzTheme="outline"  [nzType]="(isCollapsed$ | async) ?'menu-unfold':'menu-fold'" nzTheme="outline" (click)="toggle()"></span>
   </div>
   <div class="right">
     <a nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight" *ngIf="authService.currentUser$ | async as user">
