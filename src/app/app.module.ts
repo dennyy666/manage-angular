@@ -12,13 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ZorroModule } from './zorro/zorro.module';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './PageNotFound/PageNotFound.component';
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     LoginComponent,
-  ],
+    PageNotFoundComponent,
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
