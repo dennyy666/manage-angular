@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-slide-bar',
@@ -7,13 +7,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./slide-bar.component.less']
 })
 export class SlideBarComponent implements OnInit {
-
+  activeUrl: string = ''
   constructor(
-        private router: Router,
-  ) { }
+    private router: Router,
+  ) {
+    this.listenRouter()
+  }
 
   ngOnInit() {
   }
+
+  listenRouter() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.activeUrl = event.url;
+      }
+    });
+  }
+
 
   baidu() {
     window.open("https://www.baidu.com", "_blank")
