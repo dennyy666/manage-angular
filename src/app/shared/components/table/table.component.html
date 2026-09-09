@@ -1,0 +1,66 @@
+<nz-table #basicTable 
+  [nzBordered]="bordered"
+  [nzData]="listOfData"
+
+  [nzShowPagination]="showPagination"
+  [nzFrontPagination]="frontPagination"
+  [nzLoading]="loading"
+  [nzPageIndex]="pageIndex"
+  [nzPageSize]="pageSize"
+  [nzTotal]="total"
+  [nzShowTotal]="totalTemplate"
+
+  (nzPageIndexChange)="onPageIndexChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)"
+  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+>
+  <thead>
+    <tr>
+      <!-- checkbox 选择列 -->
+      <th *ngIf="showCheckbox" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+      <th 
+        nzAlign="center"
+        *ngFor="let col of columns"
+      >
+        {{ col.title }}
+      </th>
+      <!-- 操作列表头 -->
+      <th nzAlign="center" *ngIf="showActionColumn">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of basicTable.data">
+      <!-- checkbox 选择单元格 -->
+      <td *ngIf="showCheckbox"
+          [nzChecked]="isChecked(item)"
+          [nzDisabled]="isRowDisabled ? isRowDisabled(item) : false"
+          (nzCheckedChange)="onItemChecked(item, $event)"></td>
+      <td nzAlign="center" *ngFor="let col of columns">
+        <ng-container *ngIf="col.template; else defaultCell">
+          <ng-container
+            [ngTemplateOutlet]="col.template"
+            [ngTemplateOutletContext]="{ $implicit: item, column: col }"
+          ></ng-container>
+        </ng-container>
+        <ng-template #defaultCell>
+          <!-- 启用省略和 Tooltip -->
+          <span *ngIf="col.ellipsis; else plainText" class="table-cell-ellipsis" [nz-tooltip]="item[col.key]">
+            {{ item[col.key] }}
+          </span>
+          <!-- 普通文本 -->
+          <ng-template #plainText>{{ item[col.key] }}</ng-template>        
+        </ng-template>
+      </td>
+      <!-- 操作列单元格 -->
+      <td nzAlign="center" *ngIf="showActionColumn">
+        <ng-container
+          *ngIf="actionColumnTemplate"
+          [ngTemplateOutlet]="actionColumnTemplate"
+          [ngTemplateOutletContext]="{ $implicit: item }"
+        ></ng-container>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #totalTemplate let-total>总计 {{ total }} 条</ng-template>
