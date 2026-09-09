@@ -30,7 +30,7 @@
         "position": "3",
         "roleName": "坦克",
         "positionName": "打野",
-        "status": "1",
+        "status": "0",
         "remark": "愤怒吧",
         "createTime": "2023-02-26 12:13:25",
         "id": 3
@@ -54,7 +54,7 @@
         "position": "3",
         "roleName": "坦克",
         "positionName": "打野",
-        "status": "1",
+        "status": "0",
         "remark": "开大招的时候",
         "createTime": "2023-02-26 13:19:02",
         "id": 5
@@ -102,7 +102,7 @@
         "position": "4",
         "roleName": "射手",
         "positionName": "ADC",
-        "status": "1",
+        "status": "0",
         "remark": "让我们猎杀那些陷入黑暗中的逗比吧",
         "createTime": "2023-02-26 12:17:09",
         "id": 9
@@ -114,7 +114,7 @@
         "position": "1",
         "roleName": "坦克",
         "positionName": "上单",
-        "status": "1",
+        "status": "0",
         "remark": "没有一个能打的",
         "createTime": "2023-02-26 12:17:51",
         "id": 10
@@ -150,7 +150,7 @@
         "position": "4",
         "roleName": "射手",
         "positionName": "ADC",
-        "status": "1",
+        "status": "0",
         "remark": "我射的很稳",
         "createTime": "2023-02-26 19:28:29",
         "id": 13

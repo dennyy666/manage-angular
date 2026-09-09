@@ -4,6 +4,8 @@ import { HeroManageComponent } from './hero-manage/hero-manage.component';
 import { HomeManageRoutes } from './home-manage.routing';
 import { ZorroModule } from 'src/app/zorro/zorro.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WarriorManageComponent } from './warrior-manage/warrior-manage.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -11,8 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeManageRoutes,
     ZorroModule,
     FormsModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
+    SharedModule,    
   ],
-  declarations: [HeroManageComponent]
+  declarations: [HeroManageComponent,WarriorManageComponent]
 })
 export class HomeManageModule { }

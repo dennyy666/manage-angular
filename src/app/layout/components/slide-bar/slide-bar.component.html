@@ -6,7 +6,8 @@
 <ul nz-menu nzMode="inline" nzTheme="dark">
   <li nz-submenu nzTitle="首页配置" nzIcon="home" [nzOpen]="activeUrl.indexOf('/layout/homeManage')!=-1">
     <ul>
-      <li nz-menu-item nz-menu-item [routerLink]="['/layout/homeManage/heroManage']"  [nzSelected]="activeUrl.indexOf('/layout/homeManage')!=-1">英雄管理</li>
+      <li nz-menu-item nz-menu-item [routerLink]="['/layout/homeManage/heroManage']"  [nzSelected]="activeUrl.indexOf('/layout/homeManage/heroManage')!=-1">英雄管理</li>
+      <li nz-menu-item nz-menu-item [routerLink]="['/layout/homeManage/warriorManage']"  [nzSelected]="activeUrl.indexOf('/layout/homeManage/warriorManage')!=-1">英雄管理</li>
       <li nz-menu-item (click)="baidu()">百度一下啦</li>
       <li nz-menu-item (click)="jumpNotFound()">404 页面</li>
     </ul>
