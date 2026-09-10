@@ -42,6 +42,7 @@ export class BreadCrumbComponent implements OnInit {
       nzOkDanger: true,
       nzOnOk: () => {
         this.authService.logout();
+        localStorage.removeItem('hero_data');
         this.router.navigateByUrl('login');
         this.message.success('退出登录成功');
       },
