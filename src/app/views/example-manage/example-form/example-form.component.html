@@ -1,8 +1,30 @@
 <div class="form-wrapper">
   <div class="basic-configuration">
-    <app-data-configuration></app-data-configuration>
-    <app-assay-indicator></app-assay-indicator>
+    <app-data-configuration #DataConfigurationComponent></app-data-configuration>
+    <app-assay-indicator
+      [(stationQualityItemList)]="stationQualityItemList" 
+      [(colalQualityItemList)]="colalQualityItemList"
+      [nzDisabled]="sectionActive"
+      (qualityListReady)="onQualityListReady()">
+    </app-assay-indicator>
   </div>
-  <app-section-configuration ></app-section-configuration>
-  <app-out-station-set></app-out-station-set>
+  <app-section-configuration
+    [colalQualityItemList]="colalQualityItemList" 
+    [locked]="outStationActive"
+    [active]="sectionActive"
+    (enterSection)="setStep('section')"
+    (exitSection)="setStep('data')"
+    #SectionConfigurationComponent>
+  </app-section-configuration>
+  <app-out-station-set
+    [active]="outStationActive"
+    (enterOutStation)="onOutStationSet()"
+    (exitOutStation)="onClearData()"
+    [sectionNameList]="sectionNameList"
+    [colalQualityItemList]="colalQualityItemList"
+    #OutStationSetComponent>
+  </app-out-station-set>
+    <div class="submit-box">
+      <button nz-button nzType="primary" (click)="formVerify()" *ngIf="outStationActive">提交表单</button>
+    </div>
 </div>

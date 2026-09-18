@@ -8,6 +8,8 @@ import { OutStationSetComponent } from './example-form/out-station-set/out-stati
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ExampleManageRoutes } from './example-manage.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ZorroModule } from 'src/app/zorro/zorro.module';
+import { InputNumberDirective } from './example-form/input-number.directive';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ExampleManageRoutes,
     FormsModule,
+    ZorroModule,
     ReactiveFormsModule  
   ],
   declarations: [
@@ -22,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DataConfigurationComponent,
     AssayIndicatorComponent,
     SectionConfigurationComponent,
-    OutStationSetComponent
+    OutStationSetComponent,
+    InputNumberDirective,
   ]
 })
 export class ExampleManageModule { }

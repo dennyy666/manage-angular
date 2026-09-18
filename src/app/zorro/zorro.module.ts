@@ -21,6 +21,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,6 +46,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzCardModule,
     NzDividerModule,
     NzCheckboxModule,    
+    NzPopoverModule,
   ],
   exports:[
     NzButtonModule,
@@ -68,6 +70,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzCardModule,
     NzDividerModule,
     NzCheckboxModule,
+    NzPopoverModule,
   ],
   declarations: []
 })
