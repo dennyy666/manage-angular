@@ -4,9 +4,9 @@ import { LayoutComponent } from './layout.component';
 import { LayoutRoutes } from './layout.routing';
 import { RouterModule } from '@angular/router';
 import { ZorroModule } from '../zorro/zorro.module';
-import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
-import { SlideBarComponent } from './components/slide-bar/slide-bar.component';
-import { TagsViewComponent } from './components/tags-view/tags-view.component';
+import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
+import { SlideBarComponent } from './slide-bar/slide-bar.component';
+import { TagsViewComponent } from './tags-view/tags-view.component';
 
 @NgModule({
   imports: [

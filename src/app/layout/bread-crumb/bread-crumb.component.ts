@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from 'src/app/auth/auth.service';
-import { SharedStateService } from '../../shared-state.service';
+import { SharedStateService } from '../shared-state.service';
 
 @Component({
   selector: 'app-bread-crumb',
